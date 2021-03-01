@@ -37,6 +37,7 @@ h3 {
 
 h4 {
   margin: 0;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -190,6 +191,34 @@ input[type="number"] {
   display: block;
 }
 
-/* .balance {
-  width: 30%;
+.balance {
+  width: 150px;
+  height: 150px;
+  background: #2ecc71;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  border-radius: 50%;
+
+  margin: 20px auto 0 auto;
+  position: relative;
+}
+
+/* .balance .balance-pc {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  background: rgb(0, 195, 255);
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  border: 1px solid blue;
+  border-radius: 50%;
+  font-size: 0.8rem;
 } */
+
+.balance h1 {
+  text-align: center;
+  font-size: 1.8rem;
+}

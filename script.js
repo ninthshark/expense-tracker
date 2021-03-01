@@ -139,7 +139,8 @@ const updateValue = () => {
   balance.innerText = `$${total}`;
   money_plus.innerText = `$${income}`;
   money_minus.innerText = `$${expense}`;
-  expensePercent.innerText = `%${Math.round((expense / income) * 100)}`;
+  expensePercent.innerText =
+    income > 0 ? `${Math.round((expense / income) * 100)}%` : `100%`;
 };
 
 const errorDisplay = () => {
