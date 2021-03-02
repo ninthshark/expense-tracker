@@ -146,6 +146,8 @@ const addTransaction = (e) => {
     text.value = "";
     amount.value = "";
     text.focus();
+    radioIncome.checked = false;
+    radioExpense.checked = false;
   }
 };
 
