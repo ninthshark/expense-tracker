@@ -39,6 +39,12 @@ h4 {
   margin: 0;
   text-align: center;
   text-transform: uppercase;
+  padding-top: 20px;
+  /* color: white; */
+}
+
+.summary {
+  background-color: #4274fc;
 }
 
 .inc-exp-container {
@@ -104,7 +110,7 @@ input[type="number"] {
 
 .btn {
   cursor: pointer;
-  background-color: #9c88ff;
+  background-color: #4274fc;
   box-shadow: var(--box-shadow);
   color: #fff;
   border: 0;
@@ -246,4 +252,8 @@ input[type="number"] {
 .balance h1 {
   text-align: center;
   font-size: 1.8rem;
+}
+
+.edit-transaction {
+  background: orangered;
 }

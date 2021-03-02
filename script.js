@@ -14,12 +14,12 @@ const emptyTransaction = document.querySelector(".empty-transaction");
 const expensePercent = document.querySelector(".expense-pc");
 const submitBtn = document.querySelector(".submit");
 
-let dummyTransactions = [
-  // { id: 1, text: "Flower", amount: -20 },
-  // { id: 2, text: "Salary", amount: 300 },
-  // { id: 3, text: "Book", amount: -10 },
-  // { id: 4, text: "Camera", amount: 150 },
-];
+// let dummyTransactions = [
+// { id: 1, text: "Flower", amount: -20 },
+// { id: 2, text: "Salary", amount: 300 },
+// { id: 3, text: "Book", amount: -10 },
+// { id: 4, text: "Camera", amount: 150 },
+// ];
 
 const errors = {
   radioChecked: false,
@@ -46,7 +46,9 @@ const addTransactionDOM = (transaction) => {
   )}</span> <button class="delete-btn" onclick="removeItem(${
     transaction.id
   })">x</button>
-  <button class="edit-btn" onclick="editItem(${transaction.id})">Edit</button>
+  <button class="edit-btn" onclick="editTransaction(${
+    transaction.id
+  })">Edit</button>
   `;
 
   list.appendChild(item);
@@ -54,9 +56,6 @@ const addTransactionDOM = (transaction) => {
 
 const transactionUpdate = () => {
   list.innerHTML = "";
-  // transactions.forEach((transaction) => {
-  //   addTransactionDOM(transaction);
-  // });
 
   transactions.forEach(addTransactionDOM);
   // updateLocalStorage();
@@ -78,25 +77,26 @@ const removeItem = (id) => {
   transactionUpdate();
 };
 
-const editItem = (itemId) => {
+const editTransaction = (itemId) => {
   const transaction = transactions.find(
     (transaction) => transaction.id === itemId
   );
   console.log(transaction);
 
   // Get index of the id
-  const indexNo = transactions.findIndex(
+  const transactionIndex = transactions.findIndex(
     (transaction) => transaction.id === itemId
   );
-  console.log(indexNo);
+  console.log(transactionIndex);
 
   amount > 0 ? (radioIncome.checked = true) : (radioExpense.checked = true);
   text.value = transaction.text;
   amount.value = Math.abs(transaction.amount);
 
-  // submitBtn.innerText = "Edit Transaction";
-  // submitBtn.classList.add("edit");
   removeItem(itemId);
+
+  submitBtn.textContent = "Edit Transaction";
+  submitBtn.classList.add("edit-transaction");
 };
 
 const generateId = () => {
@@ -105,6 +105,9 @@ const generateId = () => {
 
 const addTransaction = (e) => {
   e.preventDefault();
+
+  submitBtn.textContent = "Add Transaction";
+  submitBtn.classList.remove("edit-transaction");
 
   // check if imcome or expense radio button checked
   if (!radioIncome.checked && !radioExpense.checked) {
@@ -190,3 +193,28 @@ const updateLocalStorage = () => {
 transactionUpdate();
 
 form.addEventListener("submit", addTransaction);
+
+/*
+list.addEventListener("click", (e) => {
+  // console.log(e.target);
+  const button = e.target;
+  const li = button.parentNode;
+  const span = li.firstElementChild;
+  // console.log(span);
+  if (e.target.className === "edit-btn") {
+    console.log(text.value, amount.value);
+    const editText = document.createElement("input");
+    const editAmount = document.createElement("input");
+    editText.type = "text";
+    editText.value = text.value;
+    editAmount.type = "number";
+    editAmount.value = amount.value;
+
+    li.insertBefore(editText, span);
+    li.insertBefore(editAmount, span);
+    li.removeChild(li.firstChild);
+    li.removeChild(span);
+  }
+});
+
+*/
