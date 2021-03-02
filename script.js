@@ -13,6 +13,7 @@ const transactionError = document.getElementById("transaction-error");
 const emptyTransaction = document.querySelector(".empty-transaction");
 const expensePercent = document.querySelector(".expense-pc");
 const submitBtn = document.querySelector(".submit");
+const resetBtn = document.querySelector(".reset");
 
 // let dummyTransactions = [
 // { id: 1, text: "Flower", amount: -20 },
@@ -193,6 +194,12 @@ const updateLocalStorage = () => {
 transactionUpdate();
 
 form.addEventListener("submit", addTransaction);
+resetBtn.addEventListener("click", () => {
+  transactions = [];
+  updateLocalStorage();
+  transactionUpdate();
+  updateValue();
+});
 
 /*
 list.addEventListener("click", (e) => {

@@ -45,6 +45,7 @@ h4 {
 
 .summary {
   background-color: #4274fc;
+  position: relative;
 }
 
 .inc-exp-container {
@@ -256,4 +257,20 @@ input[type="number"] {
 
 .edit-transaction {
   background: orangered;
+}
+
+.reset {
+  position: absolute;
+  right: 1rem;
+  top: 20px;
+  background: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 1px 1px black;
+}
+
+.reset:hover {
+  background: gray;
 }
