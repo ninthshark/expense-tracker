@@ -1,4 +1,5 @@
 const balance = document.getElementById("balance");
+const balanceContainer = document.querySelector(".balance");
 const money_plus = document.getElementById("money-plus");
 const money_minus = document.getElementById("money-minus");
 const list = document.getElementById("list");
@@ -11,6 +12,7 @@ const radioError = document.getElementById("radio-error");
 const transactionError = document.getElementById("transaction-error");
 const emptyTransaction = document.querySelector(".empty-transaction");
 const expensePercent = document.querySelector(".expense-pc");
+const submitBtn = document.querySelector(".submit");
 
 let dummyTransactions = [
   // { id: 1, text: "Flower", amount: -20 },
@@ -44,6 +46,7 @@ const addTransactionDOM = (transaction) => {
   )}</span> <button class="delete-btn" onclick="removeItem(${
     transaction.id
   })">x</button>
+  <button class="edit-btn" onclick="editItem(${transaction.id})">Edit</button>
   `;
 
   list.appendChild(item);
@@ -73,6 +76,27 @@ const removeItem = (id) => {
   transactions = transactions.filter((transaction) => transaction.id !== id);
   updateLocalStorage();
   transactionUpdate();
+};
+
+const editItem = (itemId) => {
+  const transaction = transactions.find(
+    (transaction) => transaction.id === itemId
+  );
+  console.log(transaction);
+
+  // Get index of the id
+  const indexNo = transactions.findIndex(
+    (transaction) => transaction.id === itemId
+  );
+  console.log(indexNo);
+
+  amount > 0 ? (radioIncome.checked = true) : (radioExpense.checked = true);
+  text.value = transaction.text;
+  amount.value = Math.abs(transaction.amount);
+
+  // submitBtn.innerText = "Edit Transaction";
+  // submitBtn.classList.add("edit");
+  removeItem(itemId);
 };
 
 const generateId = () => {
@@ -136,11 +160,18 @@ const updateValue = () => {
       .reduce((acc, value) => (acc += value), 0)
   ).toFixed(2);
 
-  balance.innerText = `$${total}`;
-  money_plus.innerText = `$${income}`;
-  money_minus.innerText = `$${expense}`;
+  balance.innerText = `£${total}`;
+  money_plus.innerText = `£${income}`;
+  money_minus.innerText = `£${expense}`;
   expensePercent.innerText =
     income > 0 ? `${Math.round((expense / income) * 100)}%` : `100%`;
+
+  // If balance runs below 0 change background colour
+  if (total < 0) {
+    balanceContainer.classList.add("negative-balance");
+  } else {
+    balanceContainer.classList.remove("negative-balance");
+  }
 };
 
 const errorDisplay = () => {
